@@ -13,13 +13,13 @@ menu:
 # stylesheets loaded in the <head>
 stylesheets:
 - /lib/font-awesome-4.7.0/css/font-awesome.min.css  #字体图片库
-- /lib/highlight/styles/atom-one-dark  #字体高亮库
-- https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css #katex
+- /lib/highlight-11-9-0/src/styles/atom-one-dark.css  #字体高亮库
 - /css/again.css
 
 # scripts loaded in the end of the body
 scripts:
-- /lib/highlight/highlight.pack.js #代码高亮的js
+# - /lib/highlight-11-9-0/highlight.min.js #代码高亮的js
+- https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.0-alpha1/highlight.min.js
 - /lib/jquery-3.4.1.min.js  #jQuery
 - /lib/jquery.pjax.js #pjax
 - /js/again.js
@@ -36,10 +36,15 @@ markdown_it_plus:
     pre_class: highlight
 
 # mermaid chart
-mermaid: ## mermaid url https://github.com/knsv/mermaid
+mermaid: ## mermaid url https://cdnjs.com/libraries/mermaid
   enable: true  # default true
-  version: "7.1.2" # default v7.1.2
+  version: "11.0.0-alpha.4" # default v7.1.2
   options:  # find more api options from https://github.com/knsv/mermaid/blob/master/src/mermaidAPI.js
     #startOnload: true  // default true
 
 external_link: false
+
+# MathJax Support
+mathjax:
+  enable: true
+  cdn: https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML
