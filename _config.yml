@@ -38,7 +38,7 @@ markdown_it_plus:
 # mermaid chart
 mermaid: ## mermaid url https://cdnjs.com/libraries/mermaid
   enable: true  # default true
-  version: "11.0.0-alpha.4" # default v7.1.2
+  version: "11.3.0" # default v7.1.2
   options:  # find more api options from https://github.com/knsv/mermaid/blob/master/src/mermaidAPI.js
     #startOnload: true  // default true
 
