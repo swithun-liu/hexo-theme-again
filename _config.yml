@@ -23,6 +23,7 @@ scripts:
 - /lib/jquery-3.4.1.min.js  #jQuery
 - /lib/jquery.pjax.js #pjax
 - /js/again.js
+- /js/img.js
 
 markdown_it_plus:
     highlight: true
