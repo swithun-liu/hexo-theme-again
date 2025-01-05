@@ -102,9 +102,28 @@ class Pixel {
       }
     `;
   
-    get colors() {
-      return this.dataset.colors?.split(",") || ["#f8fafc", "#f1f5f9", "#cbd5e1"];
-    }
+    // get colors() {
+    //   return ["#f8fafc", "#f1f5f9", "#cbd5e1"];
+    // //   return this.dataset.colors?.split(",") || ["#f8fafc", "#f1f5f9", "#cbd5e1"];
+    // }
+      // 颜色组
+  get colors() {
+    const colorGroups = [
+      ["#f8fafc", "#f1f5f9", "#cbd5e1"],    // 蓝色组
+      ["#e0f2fe", "#7dd3fc", "#0ea5e9"],    // 另一组蓝色
+      ["#f8fafc", "#ff6347", "#ff4500"],    // 橙色组
+      ["#f8fafc", "#32cd32", "#228b22"],    // 绿色组
+      ["#f8fafc", "#db7093", "#ff69b4"]     // 粉色组
+    ];
+
+    // 随机从颜色组中选择一个
+    var i = Math.floor(Math.random() * colorGroups.length);
+    console.log(i);
+    console.log(colorGroups[i]);
+    const randomGroup = colorGroups[i];
+    
+    return randomGroup;
+  }
   
     get gap() {
       const value = this.dataset.gap || 5;
@@ -194,22 +213,41 @@ class Pixel {
       return distance;
     }
   
-    createPixels() {
-      for (let x = 0; x < this.canvas.width; x += this.gap) {
-        for (let y = 0; y < this.canvas.height; y += this.gap) {
-          const color = this.colors[
-            Math.floor(Math.random() * this.colors.length)
-          ];
-          const delay = this.reducedMotion
-            ? 0
-            : this.getDistanceToCanvasCenter(x, y);
+    // createPixels() {
+    //   for (let x = 0; x < this.canvas.width; x += this.gap) {
+    //     for (let y = 0; y < this.canvas.height; y += this.gap) {
+    //       const color = this.colors[
+    //         Math.floor(Math.random() * this.colors.length)
+    //       ];
+    //       const delay = this.reducedMotion
+    //         ? 0
+    //         : this.getDistanceToCanvasCenter(x, y);
   
-          this.pixels.push(
-            new Pixel(this.canvas, this.ctx, x, y, color, this.speed, delay)
-          );
+    //       this.pixels.push(
+    //         new Pixel(this.canvas, this.ctx, x, y, color, this.speed, delay)
+    //       );
+    //     }
+    //   }
+    // }
+
+    createPixels() {
+        // 随机选择一个颜色组
+        const selectedColorGroup = this.colors;  // this.colors 已经是随机选择的组
+      
+        for (let x = 0; x < this.canvas.width; x += this.gap) {
+          for (let y = 0; y < this.canvas.height; y += this.gap) {
+            // 每个像素选择颜色组中的一个颜色
+            const color = selectedColorGroup[Math.floor(Math.random() * selectedColorGroup.length)];
+            const delay = this.reducedMotion
+              ? 0
+              : this.getDistanceToCanvasCenter(x, y);
+      
+            this.pixels.push(
+              new Pixel(this.canvas, this.ctx, x, y, color, this.speed, delay)
+            );
+          }
         }
       }
-    }
   
     animate(fnName) {
       this.animation = requestAnimationFrame(() => this.animate(fnName));
